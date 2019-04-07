@@ -5,7 +5,7 @@ using System.Text;
 
 namespace Core.Entities.Origin
 {
-    class Team : IEntity
+    public class Team : IEntity
     {
         public string Id { get; set; }
 

@@ -1,7 +1,9 @@
-﻿using Data.Repositories.Material;
-using Data.Repositories.Sensor;
-using Data.Repositories.User;
-using Data.Repositories.Wall;
+﻿using Data.Repositories.BioMeasureRepository;
+using Data.Repositories.GameRepository;
+using Data.Repositories.MatchRepository;
+using Data.Repositories.PlayerRepository;
+using Data.Repositories.TeamRepository;
+using Data.Repositories.UserRepository;
 using System;
 using System.Threading.Tasks;
 
@@ -10,9 +12,11 @@ namespace Data.UnitOfWork
     public interface IUnitOfWork : IDisposable
     {
         IUserRepository Users { get; set; }
-        IWallRepository Walls { get; set; }
-        ISensorRepository Sensors { get; set; }
-        IMaterialRepository Materials { get; set; }
+        IBioMeasureRepository BioMeasures { get; set; }
+        IGameRepository Games { get; set; }
+        IMatchRepository Matches { get; set; }
+        IPlayerRepository Players { get; set; }
+        ITeamRepository Teams { get; set; }
 
         Task CompleteAsync();
     }

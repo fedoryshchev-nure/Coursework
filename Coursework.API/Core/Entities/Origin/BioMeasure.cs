@@ -3,7 +3,7 @@ using System;
 
 namespace Core.Entities.Origin
 {
-    class BioMeasure : IEntity
+    public class BioMeasure : IEntity
     {
         public string Id { get; set; }
 

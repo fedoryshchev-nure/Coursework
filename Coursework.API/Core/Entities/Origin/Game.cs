@@ -3,7 +3,7 @@ using System;
 
 namespace Core.Entities.Origin
 {
-    class Game : IEntity
+    public class Game : IEntity
     {
         public string Id { get; set; }
 

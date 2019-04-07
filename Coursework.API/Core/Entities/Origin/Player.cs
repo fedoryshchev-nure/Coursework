@@ -5,7 +5,7 @@ using System.Text;
 
 namespace Core.Entities.Origin
 {
-    class Player : IEntity
+    public class Player : IEntity
     {
         public string Id { get; set; }
 
@@ -18,6 +18,6 @@ namespace Core.Entities.Origin
         public string TeamId { get; set; }
         public Team Team { get; set; }
 
-        public IEnumerator<BioMeasure> BioMeasures { get; set; }
+        public IEnumerable<BioMeasure> BioMeasures { get; set; }
     }
 }

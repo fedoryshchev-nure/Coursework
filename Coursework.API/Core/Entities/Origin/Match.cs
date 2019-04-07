@@ -3,7 +3,7 @@ using System;
 
 namespace Core.Entities.Origin
 {
-    class Match : IEntity
+    public class Match : IEntity
     {
         public enum Result
         {

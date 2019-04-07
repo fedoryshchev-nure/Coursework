@@ -1,17 +1,21 @@
 ﻿using System.Threading.Tasks;
-using Data.Repositories.Material;
-using Data.Repositories.Sensor;
-using Data.Repositories.User;
-using Data.Repositories.Wall;
+using Data.Repositories.BioMeasureRepository;
+using Data.Repositories.GameRepository;
+using Data.Repositories.MatchRepository;
+using Data.Repositories.PlayerRepository;
+using Data.Repositories.TeamRepository;
+using Data.Repositories.UserRepository;
 
 namespace Data.UnitOfWork
 {
     public class UnitOfWork : IUnitOfWork
     {
         public IUserRepository Users { get; set; }
-        public IWallRepository Walls { get; set; }
-        public ISensorRepository Sensors { get; set; }
-        public IMaterialRepository Materials { get; set; }
+        public IBioMeasureRepository BioMeasures { get; set; }
+        public IGameRepository Games { get; set; }
+        public IMatchRepository Matches { get; set; }
+        public IPlayerRepository Players { get; set; }
+        public ITeamRepository Teams { get; set; }
 
         private readonly ApplicationDBContext context;
 
@@ -19,9 +23,11 @@ namespace Data.UnitOfWork
         {
             this.context = context;
             Users = new UserRepository(context);
-            Walls = new WallRepository(context);
-            Sensors = new SensorRepository(context);
-            Materials = new MaterialRepository(context);
+            BioMeasures = new BioMeasureRepository(context);
+            Games = new GameRepository(context);
+            Matches = new MatchRepository(context);
+            Players = new PlayerRepository(context);
+            Teams = new TeamRepository(context);
         }
 
         public async Task CompleteAsync()

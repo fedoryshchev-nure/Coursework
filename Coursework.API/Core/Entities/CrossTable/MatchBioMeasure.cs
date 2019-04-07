@@ -2,12 +2,12 @@
 
 namespace Core.Entities.CrossTable
 {
-    class MatchBioMeasure
+    public class MatchBioMeasure
     {
         public string MatchId { get; set; }
         public Match Match { get; set; }
 
-        public string MeasureId { get; set; }
-        public BioMeasure MeasureBio { get; set; }
+        public string BioMeasureId { get; set; }
+        public BioMeasure BioMeasure { get; set; }
     }
 }
