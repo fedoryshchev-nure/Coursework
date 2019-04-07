@@ -1,5 +1,7 @@
-﻿using Data.Repositories.BioMeasureRepository;
+﻿using Core.Models;
+using Data.Repositories.BioMeasureRepository;
 using Data.Repositories.GameRepository;
+using Data.Repositories.Generic;
 using Data.Repositories.MatchRepository;
 using Data.Repositories.PlayerRepository;
 using Data.Repositories.TeamRepository;
@@ -11,12 +13,14 @@ namespace Data.UnitOfWork
 {
     public interface IUnitOfWork : IDisposable
     {
-        IUserRepository Users { get; set; }
-        IBioMeasureRepository BioMeasures { get; set; }
-        IGameRepository Games { get; set; }
-        IMatchRepository Matches { get; set; }
-        IPlayerRepository Players { get; set; }
-        ITeamRepository Teams { get; set; }
+        IUserRepository Users { get; }
+        IBioMeasureRepository BioMeasures { get; }
+        IGameRepository Games { get; }
+        IMatchRepository Matches { get; }
+        IPlayerRepository Players { get; }
+        ITeamRepository Teams { get; }
+
+        IGenericRepository<IEntity> GetRepositoryByType(Type type);
 
         Task CompleteAsync();
     }

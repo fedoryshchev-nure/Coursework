@@ -11,8 +11,8 @@ namespace Data.Repositories.Generic
         Task AddAsync(TEntity entity);
         Task AddRangeAsync(IEnumerable<TEntity> entity);
 
-        //void Update(TEntity entity);
-        //void UpdateRange(IEnumerable<TEntity> entity);
+        void Update(TEntity entity);
+        void UpdateRange(IEnumerable<TEntity> entity);
 
         void Remove(TEntity entity);
         void RemoveRange(IEnumerable<TEntity> entity);

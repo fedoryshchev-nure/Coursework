@@ -1,11 +1,8 @@
-﻿using Core.Models;
-using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using System;
 
-namespace Core.Entities.Origin
+namespace Coursework.API.DTOs
 {
-    public class Player : IEntity
+    public class PlayerDTO
     {
         public string Id { get; set; }
 
@@ -15,8 +12,5 @@ namespace Core.Entities.Origin
         public DateTime DateOfBirth { get; set; }
 
         public string TeamId { get; set; }
-        public Team Team { get; set; }
-
-        public IEnumerable<BioMeasure> BioMeasures { get; set; }
     }
 }

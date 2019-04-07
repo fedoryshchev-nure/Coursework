@@ -1,6 +1,13 @@
-﻿using System.Threading.Tasks;
+﻿using System;
+using System.Collections;
+using System.Collections.Generic;
+using System.Threading.Tasks;
+using Core.Entities.Origin;
+using Core.Models;
+using Core.Models.Origin;
 using Data.Repositories.BioMeasureRepository;
 using Data.Repositories.GameRepository;
+using Data.Repositories.Generic;
 using Data.Repositories.MatchRepository;
 using Data.Repositories.PlayerRepository;
 using Data.Repositories.TeamRepository;
@@ -10,24 +17,34 @@ namespace Data.UnitOfWork
 {
     public class UnitOfWork : IUnitOfWork
     {
-        public IUserRepository Users { get; set; }
-        public IBioMeasureRepository BioMeasures { get; set; }
-        public IGameRepository Games { get; set; }
-        public IMatchRepository Matches { get; set; }
-        public IPlayerRepository Players { get; set; }
-        public ITeamRepository Teams { get; set; }
-
         private readonly ApplicationDBContext context;
+        private readonly IDictionary<Type, object>
+            repositories;
+
+        public IUserRepository Users { get => repositories[typeof(User)] as IUserRepository; }
+        public IBioMeasureRepository BioMeasures { get => repositories[typeof(BioMeasure)] as IBioMeasureRepository; }
+        public IGameRepository Games { get => repositories[typeof(Game)] as IGameRepository; }
+        public IMatchRepository Matches { get => repositories[typeof(Match)] as IMatchRepository; }
+        public IPlayerRepository Players { get => repositories[typeof(Player)] as IPlayerRepository; }
+        public ITeamRepository Teams { get => repositories[typeof(Team)] as ITeamRepository; }
 
         public UnitOfWork(ApplicationDBContext context)
         {
             this.context = context;
-            Users = new UserRepository(context);
-            BioMeasures = new BioMeasureRepository(context);
-            Games = new GameRepository(context);
-            Matches = new MatchRepository(context);
-            Players = new PlayerRepository(context);
-            Teams = new TeamRepository(context);
+            this.repositories = new Dictionary<Type, object>
+            {
+                {typeof(User), new UserRepository(context) },
+                {typeof(BioMeasure), new BioMeasureRepository(context) },
+                {typeof(Game), new GameRepository(context) },
+                {typeof(Match), new MatchRepository(context) },
+                {typeof(Player), new PlayerRepository(context) },
+                {typeof(Team), new TeamRepository(context) }
+            };
+        }
+
+        public IGenericRepository<IEntity> GetRepositoryByType(Type type)
+        {
+            return repositories[type] as IGenericRepository<IEntity>;
         }
 
         public async Task CompleteAsync()

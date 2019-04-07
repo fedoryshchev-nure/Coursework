@@ -33,7 +33,7 @@ namespace Coursework.API
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
+            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
 
             services.AddAutoMapper();
 
@@ -140,8 +140,8 @@ namespace Coursework.API
             app.UseStaticFiles(new StaticFileOptions
             {
                 FileProvider = new PhysicalFileProvider(
-                    Path.Combine(Directory.GetCurrentDirectory(), 
-                    "wwwroot", 
+                    Path.Combine(Directory.GetCurrentDirectory(),
+                    "wwwroot",
                     "Languages")),
                 RequestPath = "/language"
             });
@@ -152,6 +152,7 @@ namespace Coursework.API
                 c.SwaggerEndpoint("/swagger/v1.0/swagger.json", "OOEC API v1.0");
                 c.RoutePrefix = string.Empty;
             });
+
 
             app.UseMvc();
         }

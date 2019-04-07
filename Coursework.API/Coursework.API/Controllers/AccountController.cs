@@ -3,12 +3,10 @@ using System.Threading.Tasks;
 using Coursework.API.DTOs;
 using Coursework.API.Services.AuthenticationService;
 using Microsoft.AspNetCore.Authentication;
-using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Coursework.API.Controllers
 {
-    [Authorize]
     [Route("[controller]/[action]")]
     public class AccountController : Controller
     {
@@ -20,7 +18,6 @@ namespace Coursework.API.Controllers
         }
 
         [HttpPost]
-        [AllowAnonymous]
         public async Task<ActionResult<AuthenticationToken>> Token([FromBody]LoginModel model)
         {
             try
@@ -36,7 +33,6 @@ namespace Coursework.API.Controllers
         }
 
         [HttpPost]
-        [AllowAnonymous]
         public async Task<ActionResult> Register([FromBody]UserDTO user)
         {
             try
