@@ -1,5 +1,4 @@
-﻿using Core.Entities.CrossTable;
-using Core.Entities.Origin;
+﻿using Core.Entities.Origin;
 using Core.Models.Origin;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
@@ -13,7 +12,6 @@ namespace Data
         public DbSet<Game> Games { get; set; }
         public DbSet<Match> Matches { get; set; }
         public DbSet<BioMeasure> BioMeasures { get; set; }
-        public DbSet<MatchBioMeasure> MatchBioMeasures { get; set; }
 
         public ApplicationDBContext(DbContextOptions<ApplicationDBContext> options) : base(options)
         {
@@ -24,10 +22,7 @@ namespace Data
         {
             builder.Entity<User>()
                 .HasIndex(u => u.Email)
-                .IsUnique();
-
-            builder.Entity<MatchBioMeasure>()
-                .HasKey(src => new { src.MatchId, src.BioMeasureId });                
+                .IsUnique();              
 
             base.OnModelCreating(builder);
         }

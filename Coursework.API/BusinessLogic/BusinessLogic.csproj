@@ -6,6 +6,7 @@
 
   <ItemGroup>
     <PackageReference Include="Accord" Version="3.8.0" />
+    <PackageReference Include="Accord.MachineLearning" Version="3.8.0" />
     <PackageReference Include="Microsoft.AspNetCore.All" Version="2.2.3" />
   </ItemGroup>
 

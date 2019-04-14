@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using BusinessLogic.Services.PredictionService;
 using Core.Models.Origin;
 using Coursework.API.Options;
 using Coursework.API.Services.AuthenticationService;
@@ -96,6 +97,8 @@ namespace Coursework.API
 
             services.AddScoped<IJwtAuthenticationService, JwtAuthenticationService>();
             services.AddScoped<ITokenBuilder, TokenBuilder>();
+
+            services.AddScoped<IPredictionService, PredictionService>();
 
             services.AddSwaggerGen(c =>
             {

@@ -12,16 +12,22 @@ namespace Coursework.API.Controllers
     public abstract class GenericContoller<Tdto, TEntity> : Controller
         where TEntity : IEntity, new()
     {
-        private readonly IMapper mapper;
+        protected readonly IMapper mapper;
         protected readonly IUnitOfWork unitOfWork;
 
-        public GenericContoller(IUnitOfWork unitOfWork)
+        protected GenericContoller(IMapper mapper, IUnitOfWork unitOfWork)
+        {
+            this.mapper = mapper;
+            this.unitOfWork = unitOfWork;
+        }
+
+        protected GenericContoller(IUnitOfWork unitOfWork)
         {
             this.unitOfWork = unitOfWork;
         }
 
         [HttpGet]
-        public  ActionResult<IEnumerable<Tdto>> Get()
+        public ActionResult<IEnumerable<Tdto>> Get()
         {
             try
             {

@@ -13,5 +13,8 @@ namespace Core.Entities.Origin
 
         public string PlayerId { get; set; }
         public Player Player { get; set; }
+
+        public string MatchId { get; set; }
+        public Match Match { get; set; }
     }
 }
