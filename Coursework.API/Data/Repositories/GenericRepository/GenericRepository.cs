@@ -30,7 +30,7 @@ namespace Data.Repositories.Generic
             return await Set.FirstOrDefaultAsync(x => x.Id == id);
         }
 
-        public async Task<IEnumerable<TEntity>> GetAll()
+        public async Task<IEnumerable<TEntity>> GetAllAsync()
         {
             return await Set.ToListAsync();
         }

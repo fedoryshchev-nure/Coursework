@@ -42,9 +42,10 @@ namespace Data.UnitOfWork
             };
         }
 
-        public IGenericRepository<IEntity> GetRepositoryByType(Type type)
+        public IGenericRepository<TEntity> GetRepository<TEntity>() 
+            where TEntity : class, IEntity
         {
-            return repositories[type] as IGenericRepository<IEntity>;
+            return (GenericRepository<TEntity>)repositories[typeof(TEntity)];
         }
 
         public async Task CompleteAsync()

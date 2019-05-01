@@ -6,7 +6,7 @@ namespace Data.Repositories.Generic
     public interface IGenericRepository<TEntity>
     {
         Task<TEntity> GetAsync(string id);
-        Task<IEnumerable<TEntity>> GetAll();
+        Task<IEnumerable<TEntity>> GetAllAsync();
 
         Task AddAsync(TEntity entity);
         Task AddRangeAsync(IEnumerable<TEntity> entity);

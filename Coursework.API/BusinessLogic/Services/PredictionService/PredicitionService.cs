@@ -21,7 +21,7 @@ namespace BusinessLogic.Services.PredictionService
 
         public void Train()
         {
-            var inputsOutputs = unitOfWork.Matches.GetBioMeasuresForTraining();;
+            var inputsOutputs = unitOfWork.Matches.GetBioMeasuresForTraining();
             var inputs = CastListOfBioMeasuresToListOfDoubles(inputsOutputs);
             var outputs = inputsOutputs
                 .Select(match => Convert.ToBoolean((int)match.FirstOrDefault().Match.MatchResult))

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using AutoMapper;
 using Core.Models;
+using Data.Repositories.Generic;
 using Data.UnitOfWork;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -10,8 +11,9 @@ using Microsoft.AspNetCore.Mvc;
 namespace Coursework.API.Controllers
 {
     public abstract class GenericContoller<Tdto, TEntity> : Controller
-        where TEntity : IEntity, new()
+        where TEntity : class, IEntity, new()
     {
+        private readonly IGenericRepository<TEntity> repository;
         protected readonly IMapper mapper;
         protected readonly IUnitOfWork unitOfWork;
 
@@ -19,6 +21,7 @@ namespace Coursework.API.Controllers
         {
             this.mapper = mapper;
             this.unitOfWork = unitOfWork;
+            repository = unitOfWork.GetRepository<TEntity>();
         }
 
         protected GenericContoller(IUnitOfWork unitOfWork)
@@ -27,14 +30,14 @@ namespace Coursework.API.Controllers
         }
 
         [HttpGet]
-        public ActionResult<IEnumerable<Tdto>> Get()
+        public async Task<ActionResult<IEnumerable<Tdto>>> GetAsync()
         {
             try
             {
-                return Ok(
-                    mapper.Map<IEnumerable<Tdto>>(
-                        unitOfWork.GetRepositoryByType(typeof(TEntity))
-                            .GetAll()));
+                var entities = await repository.GetAllAsync();
+                var dtos = mapper.Map<IEnumerable<Tdto>>(entities);
+
+                return Ok(dtos);
             }
             catch(Exception ex)
             {
@@ -47,10 +50,13 @@ namespace Coursework.API.Controllers
         {
             try
             {
-                return Ok(
-                    mapper.Map<Tdto>(
-                        await unitOfWork.GetRepositoryByType(typeof(TEntity))
-                            .GetAsync(id)));
+                var entity = await repository.GetAsync(id);
+                var dto = mapper.Map<Tdto>(entity);
+
+                if (dto == null)
+                    return NotFound();
+
+                return Ok(dto);
             }
             catch (Exception ex)
             {
@@ -64,9 +70,10 @@ namespace Coursework.API.Controllers
         {
             try
             {
-                await unitOfWork.GetRepositoryByType(typeof(TEntity))
-                    .AddAsync(
-                        mapper.Map<TEntity>(model));
+                await repository.AddAsync(mapper.Map<TEntity>(model));
+
+                await unitOfWork.CompleteAsync();
+
                 return Ok();
             }
             catch (Exception ex)
@@ -77,13 +84,14 @@ namespace Coursework.API.Controllers
 
         [HttpPut("{id}")]
         [Authorize(Roles = "Admin")]
-        public IActionResult Put(string id, [FromBody]Tdto model)
+        public async Task<IActionResult> Put(string id, [FromBody]Tdto model)
         {
             try
             {
-                unitOfWork.GetRepositoryByType(typeof(TEntity))
-                    .Update(
-                        mapper.Map<TEntity>(model));
+                repository.Update(mapper.Map<TEntity>(model));
+
+                await unitOfWork.CompleteAsync();
+
                 return Ok();
             }
             catch (Exception ex)
@@ -94,12 +102,14 @@ namespace Coursework.API.Controllers
 
         [HttpDelete("{id}")]
         [Authorize(Roles = "Admin")]
-        public IActionResult Delete(string id)
+        public async Task<IActionResult> Delete(string id)
         {
             try
             {
-                unitOfWork.GetRepositoryByType(typeof(TEntity))
-                    .Remove(new TEntity { Id = id });
+                repository.Remove(new TEntity { Id = id });
+
+                await unitOfWork.CompleteAsync();
+
                 return Ok();
             }
             catch (Exception ex)

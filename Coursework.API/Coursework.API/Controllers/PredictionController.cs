@@ -20,6 +20,7 @@ namespace Coursework.API.Controllers
             try
             {
                 predictionService.Train();
+
                 return Ok();
             }
             catch (Exception ex)

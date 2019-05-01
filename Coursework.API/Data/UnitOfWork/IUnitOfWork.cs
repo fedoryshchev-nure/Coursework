@@ -20,7 +20,8 @@ namespace Data.UnitOfWork
         IPlayerRepository Players { get; }
         ITeamRepository Teams { get; }
 
-        IGenericRepository<IEntity> GetRepositoryByType(Type type);
+        IGenericRepository<TEntity> GetRepository<TEntity>()
+            where TEntity : class, IEntity;
 
         Task CompleteAsync();
     }
