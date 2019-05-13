@@ -9,6 +9,8 @@ namespace Coursework.API.MapperProfiles
         public MatchProfile()
         {
             CreateMap<MatchDTO, Match>()
+                .ForMember(dest => dest.Id,
+                    src => src.Ignore())
                 .ReverseMap();
         }
     }

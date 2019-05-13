@@ -66,15 +66,17 @@ namespace Coursework.API.Controllers
 
         [HttpPost]
         [Authorize(Roles = "Admin")]
-        public async Task<IActionResult> PostAsync([FromBody]Tdto model)
+        public async Task<ActionResult<Tdto>> PostAsync([FromBody]Tdto dto)
         {
             try
             {
-                await repository.AddAsync(mapper.Map<TEntity>(model));
+                var entity = mapper.Map<TEntity>(dto);
+                await repository.AddAsync(entity);
 
                 await unitOfWork.CompleteAsync();
 
-                return Ok();
+                dto = mapper.Map<Tdto>(entity);
+                return Ok(dto);
             }
             catch (Exception ex)
             {
@@ -84,15 +86,18 @@ namespace Coursework.API.Controllers
 
         [HttpPut("{id}")]
         [Authorize(Roles = "Admin")]
-        public async Task<IActionResult> Put(string id, [FromBody]Tdto model)
+        public async Task<ActionResult<Tdto>> Put(string id, [FromBody]Tdto dto)
         {
             try
             {
-                repository.Update(mapper.Map<TEntity>(model));
+                var entity = await repository.GetAsync(id);
+                mapper.Map<Tdto, TEntity>(dto, entity);
 
                 await unitOfWork.CompleteAsync();
 
-                return Ok();
+                dto = mapper.Map<Tdto>(entity);
+
+                return Ok(dto);
             }
             catch (Exception ex)
             {

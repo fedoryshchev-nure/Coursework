@@ -2,7 +2,9 @@
   <nav class="navbar navbar-dark bg-primary">
     <div class="navbar-brand">
       <a routerLink="/" class="navbar-brand">{{'Home' | translate}}</a>
-      <a *ngIf="!isSignedIn()" routerLink="state/iot" class="navbar-brand">{{'IOT' | translate}}</a>      
+      <a routerLink="games" class="navbar-brand">{{'Games' | translate}}</a>
+      <a routerLink="players" class="navbar-brand">{{'Players' | translate}}</a>
+      <a routerLink="teams" class="navbar-brand">{{'Teams' | translate}}</a>
       <a *ngIf="isUser()" routerLink="state/data" class="navbar-brand">{{'My walls' | translate}}</a>
       <a *ngIf="isUser()" routerLink="state/statistics" class="navbar-brand">{{'Statistics' | translate}}</a>
       <a *ngIf="isUser()" routerLink="state/automatization" class="navbar-brand">{{'Automatization' | translate}}</a>

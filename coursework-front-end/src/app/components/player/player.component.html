@@ -1,0 +1,14 @@
+<div class="col-3 mx-auto text-center">
+  <div *ngIf="player$ | async as player" class="card" style="width: 18rem;">
+      <div class="card-body">
+        <h5 class="card-title">{{player.nickname}}</h5>
+        <p class="card-text">{{player.firstName}}</p>
+        <p class="card-text">{{player.lastName}}</p>
+        <p class="card-text">{{player.teamId}}</p>
+        <div>
+          <a [routerLink]="['/player/edit/', player.id]" class="mx-4 btn btn-primary">Edit</a>
+          <a (click)="Delete(player.id)" class="mx-4 btn btn-danger">Delete</a>
+        </div>        
+      </div>
+    </div>
+</div>

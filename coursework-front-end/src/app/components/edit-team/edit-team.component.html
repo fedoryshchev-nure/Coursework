@@ -1,0 +1,26 @@
+<div class="col-md-4 offset-4">
+
+  <form [formGroup]="teamForm" #tmForm="ngForm">
+
+    <div class="form-group">
+      <label>{{'Name' | translate}}:</label>
+      <input type="text" class="form-control" formControlName="name" required >
+    </div>
+
+    <div class="alert alert-danger" *ngIf="tmForm.submitted && teamForm.controls[name].errors">
+      <div *ngIf="this.teamForm.controls[name].errors.required">
+        {{'Name is required' | translate}}.
+      </div>
+    </div>
+
+  <button type="submit" (click)="Submit()" class="btn btn-primary">{{'Submit' | translate}}</button>
+  
+  </form>
+  <br>
+</div>
+
+<div *ngIf="errorOccurd" class="col-md-4 offset-4">
+  <app-errors [errorMessages]="['Error occured. Try later' | translate]">
+  </app-errors>
+</div>
+

@@ -1,0 +1,18 @@
+<div class="mx-auto col-3">
+  <div routerLink="/team/create" class="btn btn-primary">
+    Create new team
+  </div>
+  <br>
+  <div class="row">
+    <p class="col"> 
+      List of teams:
+    </p>
+  </div>
+  <div class="row"> 
+    <ul>
+      <li *ngFor="let team of this.teams$ | async" [value]="team.id">
+        <a [routerLink]="['/team', team.id]">{{team.name}}</a>
+      </li>
+    </ul>    
+  </div>
+ </div>

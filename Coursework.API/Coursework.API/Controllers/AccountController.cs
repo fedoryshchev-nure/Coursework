@@ -7,7 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace Coursework.API.Controllers
 {
-    [Route("[controller]/[action]")]
+    [Route("api/[controller]/[action]")]
     public class AccountController : Controller
     {
         private readonly IJwtAuthenticationService jwtAuthenticationService;

@@ -4,7 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace Coursework.API.Controllers
 {
-    [Route("[controller]/[action]")]
+    [Route("api/[controller]/[action]")]
     public class PredictionController : Controller
     {
         private readonly IPredictionService predictionService;

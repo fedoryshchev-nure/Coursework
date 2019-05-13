@@ -31,18 +31,16 @@ export class SignInComponent implements OnInit {
   ngOnInit() {
   }
 
-  private onSubmit(): void {
+  public onSubmit(): void {
     if (this.signInForm.valid) {
       const signInModel = new SignInModel(
         this.signInForm.controls['Email'].value,
         this.signInForm.controls['Password'].value
       );
-      this.authService.signIn(signInModel).subscribe(token => {
-        sessionStorage.setItem('jwt', token);
-        this.router.navigate(['/']);
-      }, error => {
-        this.errorOccurd = true;
-      });
+      this.authService.signIn(signInModel).subscribe(
+        () => this.router.navigate(['/']), 
+        err => this.errorOccurd = true
+      );
     }
   }
 

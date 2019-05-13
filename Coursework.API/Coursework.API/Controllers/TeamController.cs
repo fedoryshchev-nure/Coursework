@@ -6,7 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace Coursework.API.Controllers
 {
-    [Route("[controller]")]
+    [Route("api/[controller]")]
     public class TeamController : GenericContoller<TeamDTO, Team>
     {
         public TeamController(IMapper mapper, IUnitOfWork unitOfWork) : base(mapper, unitOfWork)

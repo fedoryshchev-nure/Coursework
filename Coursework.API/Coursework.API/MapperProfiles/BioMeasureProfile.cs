@@ -9,6 +9,8 @@ namespace Coursework.API.MapperProfiles
         public BioMeasureProfile()
         {
             CreateMap<BioMeasureDTO, BioMeasure>()
+                .ForMember(dest => dest.Id,
+                    src => src.Ignore())
                 .ReverseMap();
         }
     }

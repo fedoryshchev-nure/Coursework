@@ -9,6 +9,8 @@ namespace Coursework.API.MapperProfiles
         public GameProfile()
         {
             CreateMap<GameDTO, Game>()
+                .ForMember(dest => dest.Id,
+                    src => src.Ignore())
                 .ReverseMap();
         }
     }

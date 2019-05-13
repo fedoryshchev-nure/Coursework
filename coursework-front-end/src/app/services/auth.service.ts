@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
 
@@ -9,10 +9,8 @@ import { environment } from 'src/environments/environment';
 
 import { SignUpModel } from '../models/sign-up-model';
 import { SignInModel } from '../models/sign-in-model';
-
-const headers = new HttpHeaders({
-  'Content-Type': 'application/json; charset=utf-8',
-});
+import { tap } from 'rxjs/operators';
+import { AuthToken } from '../models/auth-token';
 
 @Injectable({
   providedIn: 'root'
@@ -27,16 +25,16 @@ export class AuthService {
   public signUp(signUpModel: SignUpModel): Observable<any> {
     return this.http.post(
       `${environment.apiLink}/account/register`,
-      signUpModel,
-      { headers: headers }
+      signUpModel
     );
   }
 
-  public signIn(signInModel: SignInModel): Observable<string> {
-    return this.http.post<string>(
+  public signIn(signInModel: SignInModel): Observable<AuthToken> {
+    return this.http.post<AuthToken>(
       `${environment.apiLink}/account/token`,
-      signInModel,
-      { headers: headers }
+      signInModel
+    ).pipe(
+      tap(token => sessionStorage.setItem('jwt', token.value))
     );
   }
 

@@ -1,0 +1,19 @@
+<div class="mx-auto col-3">
+  <div routerLink="/player/create" class="btn btn-primary">
+    Create new player
+  </div>
+  <br>
+  <div class="row">
+    <p class="col"> 
+      List of players:
+    </p>
+  </div>
+  <div class="row"> 
+    <ul>
+      <li *ngFor="let player of this.players$ | async" [value]="player.id">
+        <a [routerLink]="['/player', player.id]">{{player.nickname}}</a>
+      </li>
+    </ul>    
+  </div>
+</div>
+  

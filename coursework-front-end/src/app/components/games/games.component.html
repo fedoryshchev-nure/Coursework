@@ -1,0 +1,18 @@
+<div class="mx-auto col-3">
+  <div routerLink="/game/create" class="btn btn-primary">
+    Create new game
+  </div>
+  <br>
+  <div class="row">
+    <p class="col"> 
+      List of games:
+    </p>
+  </div>
+  <div class="row"> 
+    <ul>
+      <li *ngFor="let game of this.games$ | async" [value]="game.id">
+        <a [routerLink]="['/game', game.id]">{{game.name}}</a>
+      </li>
+    </ul>    
+  </div>
+ </div>

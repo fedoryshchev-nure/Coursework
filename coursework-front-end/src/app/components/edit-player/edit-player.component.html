@@ -1,0 +1,71 @@
+<div class="col-md-4 offset-4">
+
+    <form [formGroup]="playerForm" #plForm="ngForm" (ngSubmit)="Submit()">
+  
+      <div class="form-group">
+        <label>{{'Nickname' | translate}}:</label>
+        <input type="text" class="form-control" formControlName="nickname" required >
+      </div>
+  
+      <div class="alert alert-danger" *ngIf="plForm.submitted && this.playerForm.controls[nickname].errors">
+        <div *ngIf="this.playerForm.controls[nickname].errors.required">
+          {{'Nickname is required' | translate}}.
+        </div>
+      </div>
+  
+      <div class="form-group">
+        <label>{{'First name' | translate}}:</label>
+        <input type="text" class="form-control" formControlName="firstName" required>
+      </div>
+      
+      <div class="alert alert-danger" *ngIf="plForm.submitted && this.playerForm.controls[firstName].errors">
+        <div *ngIf="this.playerForm.controls[firstName].errors.required">
+          {{'First name is required' | translate}}.
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label>{{'Lastt name' | translate}}:</label>
+        <input type="text" class="form-control" formControlName="lasttName" required>
+      </div>
+      
+      <div class="alert alert-danger" *ngIf="plForm.submitted && this.playerForm.controls[lasttName].errors">
+        <div *ngIf="this.playerForm.controls[lasttName].errors.required">
+          {{'Lastt name is required' | translate}}.
+        </div>
+      </div>
+      
+      <div class="form-group">
+        <label>{{'Date of birth' | translate}}:</label>
+        <input type="date" class="form-control" formControlName="dateOfBirth" required>
+      </div>
+      
+      <div class="alert alert-danger" *ngIf="plForm.submitted && this.playerForm.controls[dateOfBirth].errors">
+        <div *ngIf="this.playerForm.controls[dateOfBirth].errors.required">
+          {{'Date of birth is required' | translate}}.
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label>{{'Team Id' | translate}}:</label>
+        <input type="text" class="form-control" formControlName="teamId" required>
+      </div>
+      
+      <div class="alert alert-danger" *ngIf="plForm.submitted && this.playerForm.controls[teamId].errors">
+        <div *ngIf="this.playerForm.controls[teamId].errors.required">
+          {{'team Id is required' | translate}}.
+        </div>
+      </div>
+  
+    <button type="submit" class="btn btn-primary">{{'Submit' | translate}}</button>
+    
+    </form>
+    <br>
+  </div>
+  
+  <div *ngIf="errorOccurd" class="col-md-4 offset-4">
+    <app-errors [errorMessages]="['Error occured. Try later' | translate]">
+    </app-errors>
+  </div>
+  
+  
