@@ -2,6 +2,9 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import {MatDatepickerModule} from '@angular/material/datepicker'; 
+import { MatNativeDateModule } from '@angular/material';
 
 import { JwtModule } from '@auth0/angular-jwt';
 import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
@@ -23,6 +26,13 @@ import { EditPlayerComponent } from './components/edit-player/edit-player.compon
 import { EditTeamComponent } from './components/edit-team/edit-team.component';
 import { TeamsComponent } from './components/teams/teams.component';
 import { TeamComponent } from './components/team/team.component';
+import { EditMatchComponent } from './components/edit-match/edit-match.component';
+import { MatchComponent } from './components/match/match.component';
+import { MatchesComponent } from './components/matches/matches.component';
+import { MatButtonModule } from '@angular/material/button';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatRippleModule } from '@angular/material/core';
+import { MatInputModule } from '@angular/material/input';
 
 export function httpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http, "http://localhost:57660/language/");
@@ -47,9 +57,19 @@ export function tokenGetter() {
     EditPlayerComponent,
     EditTeamComponent,
     TeamsComponent,
-    TeamComponent
+    TeamComponent,
+    EditMatchComponent,
+    MatchComponent,
+    MatchesComponent
   ],
   imports: [
+    BrowserAnimationsModule,
+    MatButtonModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatRippleModule,
+    MatNativeDateModule,
+    MatDatepickerModule,
     HttpClientModule,
     ReactiveFormsModule,
     FormsModule,

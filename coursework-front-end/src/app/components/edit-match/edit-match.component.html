@@ -1,0 +1,78 @@
+<div class="col-md-4 offset-4">
+
+  <form [formGroup]="matchForm" #mtForm="ngForm">
+
+    <div class="form-group">
+      <label>{{'Date' | translate}}:</label>
+      <mat-form-field>
+        <input matInput [matDatepicker]="picker" formControlName="date" placeholder="Choose a date">
+        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+      </mat-form-field>     
+    </div>
+
+    <div class="alert alert-danger" *ngIf="mtForm.submitted && matchForm.controls[date].errors">
+      <div *ngIf="this.matchForm.controls[date].errors.required">
+        {{'Date is required' | translate}}.
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label>{{'Result' | translate}}:</label>
+      <select class="form-control" formControlName="result">
+        <option *ngFor="let item of possibleResults; let i = index" [value]="i">
+          {{item}}
+        </option>
+      </select>
+    </div>
+
+    <div class="alert alert-danger" *ngIf="mtForm.submitted && matchForm.controls[result].errors">
+      <div *ngIf="this.matchForm.controls[result].errors.required">
+        {{'Result is required' | translate}}.
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label>{{'Game Id' | translate}}:</label>
+      <input type="text" class="form-control" formControlName="gameId" required >
+    </div>
+
+    <div class="alert alert-danger" *ngIf="mtForm.submitted && matchForm.controls[gameId].errors">
+      <div *ngIf="this.matchForm.controls[gameId].errors.required">
+        {{'Game Id is required' | translate}}.
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label>{{'Team One Id' | translate}}:</label>
+      <input type="text" class="form-control" formControlName="teamOneId" required >
+    </div>
+
+    <div class="alert alert-danger" *ngIf="mtForm.submitted && matchForm.controls[teamOneId].errors">
+      <div *ngIf="this.matchForm.controls[teamOneId].errors.required">
+        {{'Team One Id is required' | translate}}.
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label>{{'Team Two Id' | translate}}:</label>
+      <input type="text" class="form-control" formControlName="teamTwoId" required >
+    </div>
+
+    <div class="alert alert-danger" *ngIf="mtForm.submitted && matchForm.controls[teamTwoId].errors">
+      <div *ngIf="this.matchForm.controls[teamTwoId].errors.required">
+        {{'Team Two Id is required' | translate}}.
+      </div>
+    </div>
+
+  <button type="submit" (click)="Submit()" class="btn btn-primary">{{'Submit' | translate}}</button>
+  
+  </form>
+  <br>
+</div>
+
+<div *ngIf="errorOccurd" class="col-md-4 offset-4">
+  <app-errors [errorMessages]="['Error occured. Try later' | translate]">
+  </app-errors>
+</div>
+

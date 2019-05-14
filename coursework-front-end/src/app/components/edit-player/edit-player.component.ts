@@ -15,7 +15,7 @@ import { Player } from 'src/app/models/player';
 export class EditPlayerComponent implements OnInit, OnDestroy {
   public nickname = 'nickname';
   public firstName = 'firstName';
-  public lasttName = 'lasttName';
+  public lastName = 'lasttName';
   public dateOfBirth = 'dateOfBirth';
   public teamId = 'teamId';
 
@@ -28,7 +28,7 @@ export class EditPlayerComponent implements OnInit, OnDestroy {
   public playerForm = this.fb.group({
     nickname: ['', [Validators.required]],
     firstName: ['', [Validators.required]],
-    lasttName: ['', [Validators.required]],
+    lastName: ['', [Validators.required]],
     dateOfBirth: [new Date(), [Validators.required]],
     teamId: ['', [Validators.required]]
   });

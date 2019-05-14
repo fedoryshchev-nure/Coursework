@@ -16,6 +16,10 @@ import { TeamsComponent } from './components/teams/teams.component';
 import { TeamComponent } from './components/team/team.component';
 import { EditTeamComponent } from './components/edit-team/edit-team.component';
 
+import { MatchesComponent } from './components/matches/matches.component';
+import { MatchComponent } from './components/match/match.component';
+import { EditMatchComponent } from './components/edit-match/edit-match.component';
+
 const routes: Routes = [
   {
     path: "signin",
@@ -75,6 +79,23 @@ const routes: Routes = [
   {
     path: "team/:id",
     component: TeamComponent
+  },
+
+  {
+    path: "matches",
+    component: MatchesComponent
+  },
+  {
+    path: "match/create",
+    component: EditMatchComponent
+  },
+  {
+    path: "match/edit/:id",
+    component: EditMatchComponent
+  },
+  {
+    path: "match/:id",
+    component: MatchComponent
   },
   // {
   //   path: "**",

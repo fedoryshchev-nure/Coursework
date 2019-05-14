@@ -25,19 +25,23 @@
       </div>
 
       <div class="form-group">
-        <label>{{'Lastt name' | translate}}:</label>
-        <input type="text" class="form-control" formControlName="lasttName" required>
+        <label>{{'Last name' | translate}}:</label>
+        <input type="text" class="form-control" formControlName="lastName" required>
       </div>
       
-      <div class="alert alert-danger" *ngIf="plForm.submitted && this.playerForm.controls[lasttName].errors">
-        <div *ngIf="this.playerForm.controls[lasttName].errors.required">
-          {{'Lastt name is required' | translate}}.
+      <div class="alert alert-danger" *ngIf="plForm.submitted && this.playerForm.controls[lastName].errors">
+        <div *ngIf="this.playerForm.controls[lastName].errors.required">
+          {{'Last name is required' | translate}}.
         </div>
       </div>
       
       <div class="form-group">
         <label>{{'Date of birth' | translate}}:</label>
-        <input type="date" class="form-control" formControlName="dateOfBirth" required>
+        <mat-form-field>
+          <input matInput [matDatepicker]="picker" formControlName="dateOfBirth">
+          <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+          <mat-datepicker #picker></mat-datepicker>
+        </mat-form-field>  
       </div>
       
       <div class="alert alert-danger" *ngIf="plForm.submitted && this.playerForm.controls[dateOfBirth].errors">

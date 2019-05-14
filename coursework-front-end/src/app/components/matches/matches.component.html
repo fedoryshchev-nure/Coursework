@@ -1,0 +1,19 @@
+<div class="mx-auto col-3">
+    <div routerLink="/match/create" class="btn btn-primary">
+      Create new match
+    </div>
+    <br>
+    <div class="row">
+      <p class="col"> 
+        List of matches:
+      </p>
+    </div>
+    <div class="row"> 
+      <ul>
+        <li *ngFor="let match of this.matches$ | async" [value]="match.id">
+          <a [routerLink]="['/match', match.id]">{{match.id}}</a>
+        </li>
+      </ul>    
+    </div>
+  </div>
+    
