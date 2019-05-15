@@ -4,6 +4,7 @@ import { Observable } from 'rxjs';
 import { MatchService } from 'src/app/services/match.service';
 
 import { Match } from 'src/app/models/match';
+import { tap } from 'rxjs/operators';
 
 @Component({
   selector: 'app-matches',
@@ -18,7 +19,9 @@ export class MatchesComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.matches$ = this.matchService.get();
+    this.matches$ = this.matchService.get().pipe(        
+      tap(resp => console.log(resp))
+    );
   }
 
 }

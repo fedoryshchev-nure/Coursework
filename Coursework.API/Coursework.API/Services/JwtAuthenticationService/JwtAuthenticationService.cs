@@ -16,7 +16,6 @@ namespace Coursework.API.Services.AuthenticationService
         private readonly SignInManager<User> signInManager;
         private readonly UserManager<User> userManager;
         private readonly ITokenBuilder tokenBuilder;
-        //private readonly RoleManager<IdentityRole> roleManager;
         private readonly IUnitOfWork unitOfWork;
         private readonly IMapper mapper;
 
@@ -24,7 +23,6 @@ namespace Coursework.API.Services.AuthenticationService
             SignInManager<User> signInManager,
             UserManager<User> userManager,
             ITokenBuilder tokenBuilder,
-            //RoleManager<IdentityRole> roleManager,
             IUnitOfWork unitOfWork,
             IMapper mapper)
         {
@@ -33,7 +31,6 @@ namespace Coursework.API.Services.AuthenticationService
             this.tokenBuilder = tokenBuilder;
             this.unitOfWork = unitOfWork;
             this.mapper = mapper;
-            //this.roleManager = roleManager;
         }
 
         public async Task<AuthenticationToken> Authenticate(LoginModel model)
@@ -67,16 +64,5 @@ namespace Coursework.API.Services.AuthenticationService
                 throw new Exception("Registration failed");
             }
         }
-
-        //private async Task CreateInitialRoles()
-        //{
-        //    var roleAdmin = new IdentityRole("Admin");
-        //    var roleUser = new IdentityRole("User");
-        //    var roleSensor = new IdentityRole("Sensor");
-
-        //    await roleManager.CreateAsync(roleAdmin);
-        //    await roleManager.CreateAsync(roleUser);
-        //    await roleManager.CreateAsync(roleSensor);
-        //}
     }
 }
