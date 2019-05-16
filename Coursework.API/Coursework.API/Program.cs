@@ -1,6 +1,5 @@
 ﻿using Microsoft.AspNetCore;
 using Microsoft.AspNetCore.Hosting;
-using System;
 
 namespace Coursework.API
 {
@@ -8,10 +7,6 @@ namespace Coursework.API
     {
         public static void Main(string[] args)
         {
-            string executable = System.Reflection.Assembly.GetExecutingAssembly().Location;
-            string path = (System.IO.Path.GetDirectoryName(executable));
-            AppDomain.CurrentDomain.SetData("DataDirectory", path);
-
             BuildWebHost(args).Run();
         }
 

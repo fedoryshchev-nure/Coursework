@@ -18,6 +18,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.FileProviders;
 using Microsoft.IdentityModel.Tokens;
 using Swashbuckle.AspNetCore.Swagger;
+using System;
 using System.Collections.Generic;
 using System.IO;
 
@@ -51,9 +52,11 @@ namespace Coursework.API
                 });
             });
 
-            string connection = Configuration.GetConnectionString("DefaultConnection");
+            var connectionString = Configuration.GetConnectionString("DefaultConnection");
+            var databaseDirectory = Path.GetDirectoryName(Directory.GetCurrentDirectory()) + "\\Database";
+            connectionString = connectionString.Replace("|DataDirectory|", databaseDirectory);
             services.AddDbContext<ApplicationDBContext>(options =>
-                options.UseSqlServer(connection));
+                options.UseSqlServer(connectionString));
 
             services.AddIdentity<User, IdentityRole>(options =>
             {
