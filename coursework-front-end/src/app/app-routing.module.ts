@@ -19,6 +19,7 @@ import { EditTeamComponent } from './components/edit-team/edit-team.component';
 import { MatchesComponent } from './components/matches/matches.component';
 import { MatchComponent } from './components/match/match.component';
 import { EditMatchComponent } from './components/edit-match/edit-match.component';
+import { AdminComponent } from './components/admin/admin.component';
 
 const routes: Routes = [
   {
@@ -96,6 +97,11 @@ const routes: Routes = [
   {
     path: "match/:id",
     component: MatchComponent
+  },
+
+  {
+    path: "admin",
+    component: AdminComponent
   },
   // {
   //   path: "**",

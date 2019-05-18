@@ -3,6 +3,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { Observable, Subscription } from 'rxjs';
 import { map } from 'rxjs/operators';
 
+import { AuthService } from 'src/app/services/auth.service';
 import { PlayerService } from 'src/app/services/player.service';
 
 import { Player } from 'src/app/models/player';
@@ -19,7 +20,8 @@ export class PlayerComponent implements OnInit {
   constructor(
     private route: ActivatedRoute,
     private router: Router,
-    private playerService: PlayerService
+    private playerService: PlayerService,
+    public authService: AuthService
   ) { }
 
   ngOnInit() {

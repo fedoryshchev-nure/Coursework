@@ -3,7 +3,7 @@
       <div class="card-body">
         <h5 class="card-title">{{game.name}}</h5>
         <p class="card-text">{{game.description}}</p>
-        <div>
+        <div *ngIf="authService.isAdmin()">
           <a [routerLink]="['/game/edit/', game.id]" class="mx-4 btn btn-primary">Edit</a>
           <a (click)="Delete(game.id)" class="mx-4 btn btn-danger">Delete</a>
         </div>        

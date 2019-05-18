@@ -3,6 +3,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { Observable, Subscription } from 'rxjs';
 import { map } from 'rxjs/operators';
 
+import { AuthService } from 'src/app/services/auth.service';
 import { MatchService } from 'src/app/services/match.service';
 
 import { Match } from 'src/app/models/match';
@@ -20,7 +21,8 @@ export class MatchComponent implements OnInit {
   constructor(
     private route: ActivatedRoute,
     private router: Router,
-    private matchService: MatchService
+    private matchService: MatchService,
+    public authService: AuthService
   ) { }
 
   ngOnInit() {

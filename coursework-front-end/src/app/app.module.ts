@@ -33,6 +33,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatRippleModule } from '@angular/material/core';
 import { MatInputModule } from '@angular/material/input';
+import { AdminComponent } from './components/admin/admin.component';
 
 export function httpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http, "http://localhost:57660/language/");
@@ -60,7 +61,8 @@ export function tokenGetter() {
     TeamComponent,
     EditMatchComponent,
     MatchComponent,
-    MatchesComponent
+    MatchesComponent,
+    AdminComponent
   ],
   imports: [
     BrowserAnimationsModule,

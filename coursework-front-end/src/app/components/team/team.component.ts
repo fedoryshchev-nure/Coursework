@@ -3,6 +3,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { Observable, Subscription } from 'rxjs';
 import { map } from 'rxjs/operators';
 
+import { AuthService } from 'src/app/services/auth.service';
 import { TeamService } from 'src/app/services/team.service';
 
 import { Team } from 'src/app/models/team';
@@ -19,7 +20,8 @@ export class TeamComponent implements OnInit {
   constructor(
     private route: ActivatedRoute,
     private router: Router,
-    private teamService: TeamService
+    private teamService: TeamService,
+    public authService: AuthService
   ) { }
 
   ngOnInit() {

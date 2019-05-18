@@ -2,7 +2,7 @@
   <div *ngIf="team$ | async as team" class="card" style="width: 18rem;">
       <div class="card-body">
         <h5 class="card-title">{{team.name}}</h5>
-        <div>
+        <div *ngIf="authService.isAdmin()">
           <a [routerLink]="['/team/edit/', team.id]" class="mx-4 btn btn-primary">Edit</a>
           <a (click)="Delete(team.id)" class="mx-4 btn btn-danger">Delete</a>
         </div>        
