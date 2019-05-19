@@ -1,9 +1,18 @@
-import { AbstractControl, AsyncValidatorFn, FormGroup } from "@angular/forms";
-import { of } from "rxjs";
+import { FormGroup } from "@angular/forms";
 
-export function ConfirmPassValdiator(fg: FormGroup): AsyncValidatorFn {
-    return (control: AbstractControl) => of(
-        fg.controls['Password'].value != control.value ? 
-            {"match": {value: control.value}} : null
-    );
+const pass = 'Password';
+const confPass = 'ConfirmPassword';
+
+export function ConfirmPassValdiator(fg: FormGroup) {
+    const passControl = fg.controls[pass];
+    const confPassControl = fg.controls[confPass];
+
+    if (confPassControl.errors)
+        return;
+
+    if (passControl.value != confPassControl.value) {
+        confPassControl.setErrors(
+            {"match": true }
+        );
+    }
 }

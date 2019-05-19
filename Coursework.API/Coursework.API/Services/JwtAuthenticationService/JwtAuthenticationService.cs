@@ -60,7 +60,6 @@ namespace Coursework.API.Services.AuthenticationService
             }
             else
             {
-                await userManager.DeleteAsync(user);
                 throw new Exception("Registration failed");
             }
         }

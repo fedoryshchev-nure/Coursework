@@ -42,7 +42,7 @@
       <div *ngIf="this.signUpForm.controls[confirmPassword].errors.minlength">
         {{'Confirm password has to be at least 6 characters long' | translate}}.
       </div>  
-      <div *ngIf="this.signUpForm.controls[confirmPassword].errors.match">
+      <div *ngIf="this.signUpForm.controls[this.confirmPassword].errors.match">
         {{"Confirm password doesn't match" | translate}}.
       </div>  
     </div>

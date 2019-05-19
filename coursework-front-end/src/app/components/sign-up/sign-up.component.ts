@@ -31,8 +31,10 @@ export class SignUpComponent implements OnInit {
     ]],
     Email: ['', [Validators.required, Validators.email]],
     Password: ['', [Validators.required, Validators.minLength(6)]],
-    ConfirmPassword: ['', [Validators.required, Validators.minLength(6)], [ConfirmPassValdiator]],
+    ConfirmPassword: ['', [Validators.required, Validators.minLength(6)]],
     Country: ['', [Validators.required]]
+  }, {
+    validators: ConfirmPassValdiator
   });
 
   constructor(
@@ -44,8 +46,9 @@ export class SignUpComponent implements OnInit {
   ngOnInit() {
   }
 
-  onSubmit():
-   void {
+  onSubmit(): void {
+    console.log(this.signUpForm.controls[this.confirmPassword]);
+    console.log(this.signUpForm.controls[this.confirmPassword].errors.match);
     if (this.signUpForm.valid) {
       this.authService.signUp(this.signUpForm.value).subscribe(x => {
         this.router.navigate(['/account/signin']);
