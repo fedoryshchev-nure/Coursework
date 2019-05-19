@@ -6,8 +6,8 @@
         <p class="card-text">{{player.lastName}}</p>
         <p class="card-text">{{player.teamId}}</p>
         <div *ngIf="authService.isAdmin()">
-          <a [routerLink]="['/player/edit/', player.id]" class="mx-4 btn btn-primary">Edit</a>
-          <a (click)="Delete(player.id)" class="mx-4 btn btn-danger">Delete</a>
+          <a [routerLink]="['/player/edit/', player.id]" class="mx-4 btn btn-primary">{{'Edit' | translate}}</a>
+          <a (click)="Delete(player.id)" class="mx-4 btn btn-danger">{{'Delete' | translate}}</a>
         </div>        
       </div>
     </div>
