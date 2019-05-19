@@ -6,6 +6,13 @@
         <p class="card-text">Game Id: {{match.gameId}}</p>
         <p class="card-text">First team Id: {{match.teamOneId}}</p>
         <p class="card-text">Second team Id: {{match.teamTwoId}}</p>
+        <button 
+          (click)="predict()" 
+          *ngIf="firstTeamWin === undefined && match.matchResult == 3" 
+          class="btn btn-primary">Predict</button>
+        <p *ngIf="firstTeamWin !== undefined" class="card-text">
+          Prediction: {{firstTeamWin ? match.teamOneId : match.teamTwoId}}
+        </p>
         <div *ngIf="authService.isAdmin()">
           <a [routerLink]="['/match/edit/', match.id]" class="mx-4 btn btn-primary">Edit</a>
           <a (click)="Delete(match.id)" class="mx-4 btn btn-danger">Delete</a>

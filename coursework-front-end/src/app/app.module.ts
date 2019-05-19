@@ -34,6 +34,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatRippleModule } from '@angular/material/core';
 import { MatInputModule } from '@angular/material/input';
 import { AdminComponent } from './components/admin/admin.component';
+import { IotComponent } from './components/iot/iot.component';
 
 export function httpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http, "http://localhost:57660/language/");
@@ -62,7 +63,8 @@ export function tokenGetter() {
     EditMatchComponent,
     MatchComponent,
     MatchesComponent,
-    AdminComponent
+    AdminComponent,
+    IotComponent
   ],
   imports: [
     BrowserAnimationsModule,

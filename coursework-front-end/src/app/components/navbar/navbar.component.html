@@ -6,6 +6,7 @@
       <a routerLink="players" class="navbar-brand">{{'Players' | translate}}</a>
       <a routerLink="teams" class="navbar-brand">{{'Teams' | translate}}</a>
       <a routerLink="matches" class="navbar-brand">{{'Matches' | translate}}</a>
+      <a routerLink="iot" *ngIf="authService.isAdmin()" class="navbar-brand">{{'IOT' | translate}}</a>
     </div>
     <div class="btn-group">
       <div (click)="onButtonGroupClick($event)" class="btn-group">

@@ -6,11 +6,11 @@ import { environment } from 'src/environments/environment';
 import { IModel } from '../models/imodel';
 
 export abstract class GenericApiCallService<Tdto extends IModel> {
-  url: string;
+  protected url: string;
   dtos$: BehaviorSubject<Map<string, Tdto>>  = new BehaviorSubject(new Map());
 
   constructor(
-    private http: HttpClient,
+    protected http: HttpClient,
     controllerUrl: string
   ) {
     this.url = `${environment.apiLink}/${controllerUrl}`;

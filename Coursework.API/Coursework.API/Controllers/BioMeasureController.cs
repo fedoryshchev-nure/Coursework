@@ -6,7 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace Coursework.API.Controllers
 {
-    [Route("[controller]")]
+    [Route("api/[controller]")]
     public class BioMeasureController : GenericContoller<BioMeasureDTO, BioMeasure>
     {
         public BioMeasureController(IMapper mapper, IUnitOfWork unitOfWork) : base(mapper, unitOfWork)
